@@ -122,9 +122,9 @@ def generate_chain_index(chains):
     '''
     chain_index = 'AD:'
     for i, chain_list in enumerate(chains):
-        if i is 1:
+        if i == 1:
             chain_index = chain_index + ' BE:'
-        elif i is 2:
+        elif i == 2:
             chain_index = chain_index + ' CF:'
         # Sort the chains to make sure the number is unique.
         chain_list.sort(key=lambda x: len(x))

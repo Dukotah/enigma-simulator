@@ -27,3 +27,5 @@ jobs:
         run: |
           jupyter nbconvert --to notebook --execute --output-dir /tmp/nb BreakingEnigma.ipynb
           jupyter nbconvert --to notebook --execute --output-dir /tmp/nb MasterEnigmaCracker.ipynb
+          jupyter nbconvert --to notebook --execute --output-dir /tmp/nb BreakingLiberPrimus.ipynb
+          jupyter nbconvert --to notebook --execute --output-dir /tmp/nb LiberPrimusSolutions.ipynb

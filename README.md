@@ -64,6 +64,44 @@ settings are fixed at `AAA`. Earlier versions stepped the left rotor fastest
 and did not double-step, so their ciphertexts do not match other simulators.
 The fix follows the analysis in pull request #6 by Zanion.
 
+## The Liber Primus notebook (fork-only extension)
+
+`BreakingLiberPrimus.ipynb` (exercise, with blanks) and `LiberPrimusSolutions.ipynb`
+(worked solutions) apply the same arc to the unsolved pages of Cicada 3301's
+*Liber Primus* (2014):
+
+1. Scenario and materials: the 29-rune Gematria Primus, a transcription whose
+   unsolved part is checked against a published SHA-256, and the solved pages.
+2. The cipher machinery: rune, index and prime; shift, Atbash, Vigenere,
+   running-key and prime-stream round trips.
+3. Known structure: the six solved pages (A WARNING, SOME WISDOM, the two
+   KOANs, WELCOME with key DIVINITY, AN END with the totient-of-primes stream)
+   are re-derived and compared with the recorded plaintexts.
+4. Statistics the key cannot hide: index of coincidence, frequency flatness,
+   and the doublet deficit (adjacent repeated runes far below the random rate,
+   which no additive keyed cipher produces).
+5. A hypothesis catalog: about a thousand candidate keystreams scored against
+   every unsolved segment, compared with the same catalog run on shuffled
+   ciphertext, with solved pages as positive controls.
+6. An inverted ending: a planted key is recovered, a planted key behind an
+   anti-repeat filter is missed by rigid decoding and recovered by a skip-aware
+   decoder, and both a one-time pad and a short-seed derived keystream behind
+   that filter reproduce the unsolved stream's statistics.
+
+What it is not: it is not a solution, and it does not claim the pages are
+unsolvable. The unsolved pages behave like a one-time pad, but a keystream
+derived from a short seed is not excluded. The cipher code and data in `lp/`
+are vendored from the `liber-primus` rig in
+[github.com/Dukotah/cicada3301](https://github.com/Dukotah/cicada3301), with
+every data file pinned by SHA-256 in `lp/sources.py`; that repository holds the
+full analysis, the methods paper (`PAPER.md`) and open lanes
+(`docs/OPEN-LANES.md`). The catalog sweep is cached in `lp/cache/catalog.json`;
+`python make_lp_cache.py` rebuilds it (about a minute) and the notebooks
+recompute it themselves if it is missing or stale. Each notebook executes in
+under a minute with the cache.
+
+This extension is not part of the NSA project and is not endorsed by NSA.
+
 [nsa]: https://www.nsa.gov
 [wiki-enigma]: https://en.wikipedia.org/wiki/Enigma_machine
 [wiki-ww2]: https://en.wikipedia.org/wiki/World_War_II
